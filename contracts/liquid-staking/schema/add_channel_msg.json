@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "AddChannelMsg",
+    "description": "This is the message for adding channel to the smart contract",
+    "type": "object",
+    "required": [
+      "channel"
+    ],
+    "properties": {
+      "info": {
+            "description": "Information on the channel's connection",
+            "allOf": [
+                {
+                "$ref": "#/definitions/ChannelInfo"
+                }
+            ]
+      }
+    },
+    "definitions": {
+        "ChannelInfo": {
+          "type": "object",
+          "required": [
+            "connection_id",
+            "counterparty_endpoint",
+            "id"
+          ],
+          "properties": {
+            "connection_id": {
+              "description": "the connection this exists on (you can use to query client/consensus info)",
+              "type": "string"
+            },
+            "counterparty_endpoint": {
+              "description": "the remote channel/port we connect to",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/IbcEndpoint"
+                }
+              ]
+            },
+            "id": {
+              "description": "id of this channel",
+              "type": "string"
+            }
+          }
+        }
+    }
+}
+  
